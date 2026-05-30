@@ -1,0 +1,101 @@
+<h3>Books Management</h3>
+
+<div class="alert alert-success" *ngIf="message">{{ message }}</div>
+<div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
+<div class="card mb-4">
+  <div class="card-header">
+    {{ editingBookId ? 'Update Book' : 'Create Book' }}
+  </div>
+
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <input class="form-control" placeholder="Title" [(ngModel)]="book.title">
+      </div>
+
+      <div class="col-md-4">
+        <input class="form-control" placeholder="Author" [(ngModel)]="book.author">
+      </div>
+
+      <div class="col-md-4">
+        <input class="form-control" placeholder="ISBN" [(ngModel)]="book.isbn">
+      </div>
+
+      <div class="col-md-4">
+        <input class="form-control" placeholder="Category" [(ngModel)]="book.category">
+      </div>
+
+      <div class="col-md-4">
+        <input type="number" class="form-control" placeholder="Total Copies" [(ngModel)]="book.totalCopies">
+      </div>
+
+      <div class="col-md-4">
+        <input type="number" class="form-control" placeholder="Available Copies" [(ngModel)]="book.availableCopies">
+      </div>
+
+      <div class="col-md-4">
+        <input class="form-control" placeholder="Shelf Location" [(ngModel)]="book.shelfLocation">
+      </div>
+    </div>
+
+    <button class="btn btn-primary mt-3" (click)="saveBook()">
+      {{ editingBookId ? 'Update' : 'Create' }}
+    </button>
+
+    <button class="btn btn-secondary mt-3 ms-2" (click)="resetForm()">
+      Reset
+    </button>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-md-6">
+    <input class="form-control" placeholder="Search title/author/isbn/category" [(ngModel)]="searchKeyword">
+  </div>
+
+  <div class="col-md-4">
+    <button class="btn btn-dark" (click)="searchBooks()">Search</button>
+    <button class="btn btn-outline-secondary ms-2" (click)="loadBooks()">Clear</button>
+  </div>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>ISBN</th>
+      <th>Category</th>
+      <th>Total</th>
+      <th>Available</th>
+      <th>Shelf</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+   <tbody>
+  <tr *ngFor="let b of books">
+    <td>{{ b.id }}</td>
+    <td>{{ b.title }}</td>
+    <td>{{ b.author }}</td>
+    <td>{{ b.isbn }}</td>
+    <td>{{ b.category }}</td>
+    <td>{{ b.totalCopies }}</td>
+    <td>{{ b.availableCopies }}</td>
+    <td>{{ b.shelfLocation }}</td>
+    <td>
+      <button class="btn btn-sm btn-warning" (click)="editBook(b)">Edit</button>
+      <button class="btn btn-sm btn-danger ms-2" (click)="deleteBook(b.id)">Delete</button>
+    </td>
+  </tr>
+
+  <tr *ngIf="books.length === 0">
+    <td colspan="9" class="text-center text-muted">
+      No books found
+    </td>
+  </tr>
+</tbody>
+</table>

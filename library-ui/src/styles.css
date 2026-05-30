@@ -1,0 +1,158 @@
+body {
+  margin: 0;
+  background: #f4f7fb;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: linear-gradient(180deg, #111827, #1f2937);
+  box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+  padding-top: 20px;
+}
+
+.sidebar h3 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sidebar .nav-link {
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+  background: #2563eb;
+  transform: translateX(4px);
+}
+
+/* CONTENT */
+
+.content-area {
+  margin-left: 250px;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* TITLES */
+
+.page-title {
+  font-size: 38px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.text-muted {
+  font-size: 16px;
+  color: #6b7280 !important;
+}
+
+/* DASHBOARD CARDS */
+
+.dashboard-card {
+  border-radius: 22px;
+  padding: 28px;
+  color: white;
+  min-height: 200px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-8px);
+}
+
+.dashboard-card h4 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.dashboard-card p {
+  font-size: 15px;
+  opacity: 0.95;
+  line-height: 1.5;
+}
+
+/* CARD COLORS */
+
+.card-books {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.card-members {
+  background: linear-gradient(135deg, #059669, #047857);
+}
+
+.card-issue {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.card-history {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+/* BUTTONS */
+
+.btn {
+  border-radius: 10px;
+  font-weight: 500;
+  padding: 8px 18px;
+}
+
+/* TABLE */
+
+.table {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+.table thead {
+  font-weight: 600;
+}
+
+/* FORM CARDS */
+
+.custom-card,
+.card {
+  border: none !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  border-top-left-radius: 18px !important;
+  border-top-right-radius: 18px !important;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* INPUTS */
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(37,99,235,0.15);
+  border-color: #2563eb;
+}

@@ -1,0 +1,48 @@
+<h3>Transaction History</h3>
+
+<div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
+<h6>Total Transactions: {{ transactions.length }}</h6>
+
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Transaction ID</th>
+      <th>Book</th>
+      <th>Member</th>
+      <th>Issued At</th>
+      <th>Due Date</th>
+      <th>Returned At</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (t of transactions; track t.id) {
+      <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.book?.title }}</td>
+        <td>{{ t.member?.name }}</td>
+        <td>{{ t.issuedAt }}</td>
+        <td>{{ t.dueDate }}</td>
+        <td>{{ t.returnedAt || '-' }}</td>
+        <td>
+          <span class="badge"
+                [class.bg-primary]="t.status === 'ISSUED'"
+                [class.bg-success]="t.status === 'RETURNED'"
+                [class.bg-danger]="t.status === 'OVERDUE'">
+            {{ t.status }}
+          </span>
+        </td>
+      </tr>
+    }
+
+    @if (transactions.length === 0) {
+      <tr>
+        <td colspan="7" class="text-center text-muted">
+          No transactions found
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

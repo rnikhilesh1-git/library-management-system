@@ -1,0 +1,51 @@
+<h3>Issue / Return Book</h3>
+
+<div class="alert alert-success" *ngIf="message">{{ message }}</div>
+<div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-primary text-white">Issue Book</div>
+
+      <div class="card-body">
+        <select class="form-select mb-3" [(ngModel)]="selectedBookId">
+          <option [ngValue]="null">Select Book</option>
+          <option *ngFor="let book of books"
+                  [ngValue]="book.id"
+                  [disabled]="book.availableCopies <= 0">
+            {{ book.title }} - Available: {{ book.availableCopies }}
+          </option>
+        </select>
+
+        <select class="form-select mb-3" [(ngModel)]="selectedMemberId">
+          <option [ngValue]="null">Select Member</option>
+          <option *ngFor="let member of members"
+                  [ngValue]="member.id"
+                  [disabled]="member.status === 'INACTIVE'">
+            {{ member.name }} - {{ member.status }}
+          </option>
+        </select>
+
+        <button class="btn btn-primary" (click)="issueBook()">Issue Book</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-success text-white">Return Book</div>
+
+      <div class="card-body">
+        <select class="form-select mb-3" [(ngModel)]="selectedTransactionId">
+          <option [ngValue]="null">Select Issued Transaction</option>
+          <option *ngFor="let transaction of getIssuedTransactions()" [ngValue]="transaction.id">
+            #{{ transaction.id }} - {{ transaction.book?.title }} - {{ transaction.member?.name }}
+          </option>
+        </select>
+
+        <button class="btn btn-success" (click)="returnBook()">Return Book</button>
+      </div>
+    </div>
+  </div>
+</div>

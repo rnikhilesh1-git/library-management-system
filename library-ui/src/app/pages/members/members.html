@@ -1,0 +1,76 @@
+<h3>Members Management</h3>
+
+<div class="alert alert-success" *ngIf="message">{{ message }}</div>
+<div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
+<div class="card mb-4">
+  <div class="card-header">{{ editingMemberId ? 'Update Member' : 'Create Member' }}</div>
+
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-5">
+        <input class="form-control" placeholder="Name" [(ngModel)]="member.name">
+      </div>
+
+      <div class="col-md-5">
+        <input class="form-control" placeholder="Email" [(ngModel)]="member.email">
+      </div>
+    </div>
+
+    <button class="btn btn-primary mt-3" (click)="saveMember()">
+      {{ editingMemberId ? 'Update Member' : 'Create Member' }}
+    </button>
+
+    <button class="btn btn-secondary mt-3 ms-2" (click)="resetForm()">Reset</button>
+  </div>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  @for (m of members; track m.id) {
+    <tr>
+      <td>{{ m.id }}</td>
+      <td>{{ m.name }}</td>
+      <td>{{ m.email }}</td>
+      <td>
+        <span class="badge"
+              [class.bg-success]="m.status === 'ACTIVE'"
+              [class.bg-danger]="m.status === 'INACTIVE'">
+          {{ m.status }}
+        </span>
+      </td>
+      <td>{{ m.createdAt }}</td>
+      <td>
+        <button class="btn btn-sm btn-warning" (click)="editMember(m)">
+          Edit
+        </button>
+
+        <button class="btn btn-sm btn-danger ms-2"
+                (click)="deactivateMember(m.id)"
+                [disabled]="m.status === 'INACTIVE'">
+          Deactivate
+        </button>
+      </td>
+    </tr>
+  }
+
+  @if (members.length === 0) {
+    <tr>
+      <td colspan="6" class="text-center text-muted">
+        No members found
+      </td>
+    </tr>
+  }
+</tbody>
+</table>
